@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 
 # create route that renders index.html template
+# create fucntion called scrape that will execute all of your scraping code from Python dictionary
 @app.route("/")
 def index():
     mars_dict = {'news_title': "Virginia Middle School Student Earns Honor of Naming NASA's Next Mars Rover",
@@ -22,3 +23,9 @@ def index():
    'img_url': 'http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/valles_marineris_enhanced.tif'}]}
     
     return render_template("index.html", dict=mars_dict)
+
+# create a route called /scrape that will import your scrape_mars.py script and call your scrape function.
+@app.route("/scrape")
+# Store the return value in Mongo as a Python dictionary.
+
+# Create a root route / that will query your Mongo database and pass the mars data into an HTML template

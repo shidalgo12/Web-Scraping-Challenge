@@ -1,27 +1,40 @@
-# import necessary libraries
-from flask import Flask, render_template
+# Convert Jupyter notebook into a Python script that will execute all of your scraping code and return one Python dictionary 
+# Next, create a route called /scrape that will import your scrape_mars.py script and call your scrape function.
+# Store the return value in Mongo as a Python dictionary.
+# Create a root route / that will query your Mongo database and pass the mars data into an HTML template to display the data.
+# Create a template HTML file called index.html that will take the mars data dictionary and display all of the data in the appropriate HTML elements. 
 
-# create instance of Flask app
+from flask import Flask, render_template, redirect
+from flask_pymongo import PyMongo
+import mars_scrape
+
+# Create an instance of Flask
 app = Flask(__name__)
 
+# Use PyMongo to establish Mongo connection
+mongo = PyMongo(app, uri= "mongodb://localhost:27017/mars_app")
 
-# create route that renders index.html template
+# Route to render index.html template using data from Mongo
 @app.route("/")
-def index():
-    scrape = {'news_title': "Virginia Middle School Student Earns Honor of Naming NASA's Next Mars Rover",
- 'news_p': 'NASA chose a seventh-grader from Virginia as winner of the agency\'s "Name the Rover" essay contest. Alexander Mather\'s entry for "Perseverance" was voted tops among 28,000 entries. ',
- 'featured_image_url': 'https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA11591_hires.jpg',
- 'mars_weather': 'InSight sol 457 (2020-03-10) low -95.7ºC (-140.3ºF) high -9.1ºC (15.6ºF)\nwinds from the SSE at 6.5 m/s (14.5 mph) gusting to 21.0 m/s (46.9 mph)\npressure at 6.30 hPa',
- 'hemisphere_img_urls': [{'title': 'Cerberus Hemisphere Enhanced',
-   'img_url': 'http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif'},
-  {'title': 'Schiaparelli Hemisphere Enhanced',
-   'img_url': 'http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/schiaparelli_enhanced.tif'},
-  {'title': 'Syrtis Major Hemisphere Enhanced',
-   'img_url': 'http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/syrtis_major_enhanced.tif'},
-  {'title': 'Valles Marineris Hemisphere Enhanced',
-   'img_url': 'http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/valles_marineris_enhanced.tif'}]}
-    return render_template("index.html", dict=scrape)
+def home():
 
+    # Find one record of data from the mongo database
+    mars_data = mongo.db.mars.find_one()
+
+    # Return template and data
+    return render_template("index.html", mars=mars_data)
+
+# Create a route called /scrape that will import your scrape_mars.py script and call your scrape function
+@app.route("/scrape")
+def scrape():
+    mars=mongo.db.mars
+    # Run the scrape function
+    mars_data = mars_scrape.scrape_info()
+
+    # Return value in Mongo as a Python dictionary
+    mars.update({}, mars_data, upsert=True)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=5001)
+
+# Find one record of data from the mongo database
