@@ -1,5 +1,9 @@
-body{
+/* body{
   background-color: lightgray;
+} */
+
+.news{
+  margin-left: 50pt;
 }
 
 #feature-img{
