@@ -11,17 +11,87 @@
 </head>
 
 <body>
-<div class="container">
-  <div class="jumbotron text-center">
-    <h1>Mission to Mars</h1>
-    <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
-  </div>
-</div>
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+  
 
-  <div class='news'>
-    <h1>Latest Mars News</h1>
-    <h3>{{mars.news}}</h3>
-    <p>{{ mars.paragraph}}</p>
-  </div> 
+    <div class="row">
+      <div class="col-md-12">
+        <div class='news'>
+          <h1>Latest Mars News</h1>
+          <h3>{{mars.news}}</h3>
+          <p>{{mars.paragraph}}</p>
+        </div> 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class= "featuredImg">
+          <h1 class=section-headers>Featured Mars Image</h1>
+          <hr class= sum-hr>
+          <img class= "image-responsive" src= "{{mars.featured_image_url}}", alt="featured_img"></img>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class = "weather">
+          <h3 class=section-headers>Current Weather on Mars</h3>
+          <hr class="vis-hr">
+          <!-- <p>{{mars.mars_weather }}</p> -->
+        <div>
+        <br>
+        </div>
+          <h3>Mars Facts</h3>
+          <!-- <div>{{mars.fact_table}}</div> -->
+        </div>
+      </div>
+    </div>
+      
+    <br>
+
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <h1 class="mars_hems">Mars Hemispheres</h1>
+      </div> 
+    </div>
+
+    <br>
+
+    <!-- <div class="row">
+      <div class="col-sm-12 col-lg-6">
+        <div class= "featuredImg">
+          <p>Hemisphere Title</p>
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-6">
+      <div class= "featuredImg">
+          <p>Hemisphere Title</p>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <br>
+
+    <div class="container"></div>
+      <div class="row">
+        <div class="col-sm-12 col-lg-6">
+          <div class= "featuredImg">
+            <p>Hemisphere Title</p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+        <div class= "featuredImg">
+            <p>Hemisphere Title</p>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+      
 </body>
 </html>
