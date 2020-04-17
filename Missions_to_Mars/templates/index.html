@@ -8,6 +8,12 @@
   <title>Mission To Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="mars.css">
+  <style>  
+      img{ 
+      width: 100%; 
+      height: 100%; 
+      } 
+    </style>
 </head>
 
 <body>
@@ -16,14 +22,13 @@
       <h1>Mission to Mars</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
-  
 
     <div class="row">
       <div class="col-md-12">
         <div class='news'>
           <h1>Latest Mars News</h1>
           <h3>{{mars.news}}</h3>
-          <p>{{mars.paragraph}}</p>
+          <h4>{{mars.paragraph}}</h4>
         </div> 
       </div>
     </div>
@@ -32,21 +37,28 @@
       <div class="col-md-8">
         <div class= "featuredImg">
           <h1 class=section-headers>Featured Mars Image</h1>
-          <hr class= sum-hr>
-          <img class= "image-responsive" src= "{{mars.featured_image_url}}", alt="featured_img"></img>
+          <img src= "{{mars.featured_image_url}}", alt="featured_img"></img>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class = "weather">
           <h3 class=section-headers>Current Weather on Mars</h3>
-          <hr class="vis-hr">
+          <hr>
           <!-- <p>{{mars.mars_weather }}</p> -->
         <div>
         <br>
         </div>
           <h3>Mars Facts</h3>
-          <!-- <div>{{mars.fact_table}}</div> -->
+          <div>
+            <table class="tablepress tablepress-id-p-mars" id="tablepress-p-mars"><tbody><tr class="row-1 odd"><td class="column-1"><strong>Equatorial Diameter:</strong></td><td class="column-2">6,792 km<br/></td></tr><tr class="row-2 even"><td class="column-1"><strong>Polar Diameter:</strong></td><td class="column-2">6,752 
+            km<br/></td></tr><tr class="row-3 odd"><td class="column-1"><strong>Mass:</strong></td><td class="column-2">6.39 × 10^23 
+            kg<br/> (0.11 Earths)</td></tr><tr class="row-4 even"><td class="column-1"><strong>Moons:</strong></td><td class="column-2">2 (<a href="https://space-facts.com/moons/phobos/">Phobos</a> &amp; <a href="https://space-facts.com/moons/deimos/">Deimos</a>)</td></tr><tr class="row-5 odd"><td class="column-1"><strong>Orbit Distance:</strong></td><td class="column-2">227,943,824 km<br/> (1.38 AU)</td></tr><tr class="row-6 even"><td class="column-1"><strong>Orbit Period:</strong></td><td 
+            class="column-2">687 days (1.9 years)<br/></td></tr><tr class="row-7 odd"><td class="column-1"><strong>Surface Temperature: </strong></td><td class="column-2">-87 to -5 °C</td></tr><tr class="row-8 even"><td class="column-1"><strong>First Record:</strong></td><td class="column-2">2nd millennium BC</td></tr><tr class="row-9 odd"><td class="column-1"><strong>Recorded By:</strong></td><td class="column-2">Egyptian astronomers</td></tr></tbody></table>
+          </div>
+          <!-- <div>
+            {{mars.fact_table}}
+          </div> -->
         </div>
       </div>
     </div>
@@ -61,36 +73,29 @@
 
     <br>
 
-    <!-- <div class="row">
+    <div class="row">
       <div class="col-sm-12 col-lg-6">
-        <div class= "featuredImg">
-          <p>Hemisphere Title</p>
-        </div>
+        <img src= "{{mars.href1}}", alt="hem1_img"></img>
+        <h2>{{mars.title1}}</h2>
       </div>
       <div class="col-sm-12 col-lg-6">
-      <div class= "featuredImg">
-          <p>Hemisphere Title</p>
-        </div>
+        <img src= "{{mars.href2}}", alt="hem2_img"></img>
+        <h2>{{mars.title2}}</h2>
       </div>
-    </div>
     </div>
 
     <br>
 
-    <div class="container"></div>
-      <div class="row">
-        <div class="col-sm-12 col-lg-6">
-          <div class= "featuredImg">
-            <p>Hemisphere Title</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-lg-6">
-        <div class= "featuredImg">
-            <p>Hemisphere Title</p>
-          </div>
-        </div>
+    <div class="row">
+      <div class="col-sm-12 col-lg-6">
+        <img src= "{{mars.href3}}", alt="hem3_img"></img>
+        <h2>{{mars.title3}}</h2>
       </div>
-    </div> -->
+      <div class="col-sm-12 col-lg-6">
+        <img src= "{{mars.href4}}", alt="hem4_img"></img>
+        <h2>{{mars.title4}}</h2>
+      </div>
+    </div>
   </div>
       
 </body>
