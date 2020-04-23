@@ -3,6 +3,7 @@ from splinter import Browser
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 import time
+import lxml.html as lh
 
 from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
@@ -27,7 +28,7 @@ def scrape_info():
   # Get latest news paragraph
   paragraph = soup.find('div', class_="article_teaser_body").text
 
-  # DOES NOT WORK - Add variables to master dictionary
+  # Add variables to master dictionary
   mars["news"]=news[1].text
   mars["paragraph"]=paragraph
 
@@ -77,35 +78,36 @@ def scrape_info():
 
   #   # ***MARS FACT TABLE***
   # # =====================
-  # # Visit Fact Table Website
-  # fact_url = 'https://space-facts.com/mars/'
-  # browser.visit(fact_url)
+  # Visit Fact Table Website
+  fact_url = 'https://space-facts.com/mars/'
+  browser.visit(fact_url)
 
-  # # Scrape page into Soup
-  # html = browser.html
-  # soup = bs(html, "html.parser")
+  # Scrape page into Soup
+  html = browser.html
+  soup = bs(html, "html.parser")
 
-  # # Retrieve Mars Fact Table
+  # Retrieve Mars Fact Table
   # fact_table = soup.find('table', class_='tablepress tablepress-id-p-mars')
-
-  # # Add variable to master dictionary
-  # mars['fact_table']= fact_table
-  # print(mars)
-
-  # # Visit Fact Table Website
-  # fact_url = 'https://space-facts.com/mars/'
-  # # browser.visit(fact_url)
-
-  # # # Scrape page into Soup
-  # # html = browser.html
-  # # soup = bs(html, "html.parser")
-
-  # # Retrieve Mars Fact Table
-  # fact_table = pd.read_html(fact_url)
-
-  # # Add variable to master dictionary
   
-  # df =  fact_table[0]
+  # Retrieve Mars Fact Table
+  fact_table = pd.read_html(fact_url)
+
+  df =  fact_table[0]
+  df.columns = ['Attributes', 'Values']
+  df.set_index('Attributes', inplace=True)
+
+  html_table = df.to_html(classes = ['table','table-striped'])
+  # # html_table = html_table.replace('\n', "")
+  # # html_table = html_table.replace(' border="1" class="dataframe', "")
+  # # html_table = html_table.replace(' style="text-align: right;"', "")
+  # print(html_table)
+  
+  # Add variable to master dictionary
+  mars['fact_table']= html_table
+  print(mars)
+
+
+  
   # df.columns= ["attribute", "values"]
   # html_table = df.to_html()
   # html_table = html_table.replace('\n', " ")
