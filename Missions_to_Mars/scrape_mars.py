@@ -3,7 +3,6 @@ from splinter import Browser
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 import time
-import lxml.html as lh
 
 from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
@@ -93,26 +92,19 @@ def scrape_info():
   fact_table = pd.read_html(fact_url)
 
   df =  fact_table[0]
+
+  # Change Column Names
   df.columns = ['Attributes', 'Values']
-  df.set_index('Attributes', inplace=True)
+
+  # Remove index
+  df.reset_index()
 
   html_table = df.to_html(classes = ['table','table-striped'])
-  # # html_table = html_table.replace('\n', "")
-  # # html_table = html_table.replace(' border="1" class="dataframe', "")
-  # # html_table = html_table.replace(' style="text-align: right;"', "")
-  # print(html_table)
+  
   
   # Add variable to master dictionary
   mars['fact_table']= html_table
   print(mars)
-
-
-  
-  # df.columns= ["attribute", "values"]
-  # html_table = df.to_html()
-  # html_table = html_table.replace('\n', " ")
-  # mars['facts']=html_table
-  # print(mars)
 
   # ***MARS HEMISPHERE IMAGES***
   # ============================
@@ -148,7 +140,7 @@ def scrape_info():
   mars['href1']= href1
   mars['title1']= title1
   
-  # ***HEMISPHEERE IMAGE 2***
+  # ***HEMISPHERE IMAGE 2***
   # Retrieve all elements that contain hemisphere image and title
   browser.visit(hem2_url)
 
@@ -174,7 +166,7 @@ def scrape_info():
   mars['href2']= href2
   mars['title2']= title2
 
-  # ***HEMISPHEERE IMAGE 3***
+  # ***HEMISPHERE IMAGE 3***
   # Retrieve all elements that contain hemisphere image and title
   browser.visit(hem3_url)
 
@@ -187,7 +179,7 @@ def scrape_info():
   # print(content)
 
   title3 = content.find('h2').text
-  # print(title1)
+  # print(title3)
 
   img_content = soup.find('div', class_='downloads')
   img_ul = img_content.find("ul")
@@ -199,7 +191,7 @@ def scrape_info():
   mars['href3']= href3
   mars['title3']= title3
 
-  # ***HEMISPHEERE IMAGE 4***
+  # ***HEMISPHERE IMAGE 4***
   # Retrieve all elements that contain hemisphere image and title
   browser.visit(hem4_url)
 
