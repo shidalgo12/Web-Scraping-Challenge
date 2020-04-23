@@ -1,6 +1,8 @@
 # Convert Jupyter notebook into a Python script that will execute all of your scraping code and return one Python dictionary 
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
+import pandas as pd
+import time
 
 from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
@@ -54,24 +56,27 @@ def scrape_info():
   # print(mars)
   
 
-  # # ***MARS WEATHER***
-  # # ==================
-  # # Visit Twitter website
-  # weather_url = 'https://twitter.com/marswxreport?lang=en'
-  # browser.visit(weather_url)
+  # ***MARS WEATHER***
+  # ==================
+  # Visit Twitter website
+  weather_url = 'https://twitter.com/marswxreport?lang=en'
+  browser.visit(weather_url)
 
-  # # Scrape page into Soup
-  # html = browser.html
-  # soup = bs(html, "html.parser")
+  # Pause Web Scrape
+  time.sleep(10)
 
-  # # Retrieve the latest Mars weather tweet
-  # mars_weather = soup.find('div', class_='css-901oao r-hkyrab r-1qd0xha r-a023e6 r-16dba41 r-ad9z0x r-bcqeeo r-bnwqim r-qvutc0').text
+  # Scrape page into Soup
+  html = browser.html
+  soup = bs(html, "html.parser")
 
-  # # Add variable to master dictionary
-  # mars["mars_weather"]=mars_weather
-  
-  # ***MARS FACT TABLE***
-  # =====================
+  # Retrieve the latest Mars weather tweet
+  mars_weather = soup.find('div', class_='css-901oao r-hkyrab r-1qd0xha r-a023e6 r-16dba41 r-ad9z0x r-bcqeeo r-bnwqim r-qvutc0').text
+
+  # Add variable to master dictionary
+  mars["mars_weather"]=mars_weather
+
+  #   # ***MARS FACT TABLE***
+  # # =====================
   # # Visit Fact Table Website
   # fact_url = 'https://space-facts.com/mars/'
   # browser.visit(fact_url)
@@ -87,6 +92,26 @@ def scrape_info():
   # mars['fact_table']= fact_table
   # print(mars)
 
+  # # Visit Fact Table Website
+  # fact_url = 'https://space-facts.com/mars/'
+  # # browser.visit(fact_url)
+
+  # # # Scrape page into Soup
+  # # html = browser.html
+  # # soup = bs(html, "html.parser")
+
+  # # Retrieve Mars Fact Table
+  # fact_table = pd.read_html(fact_url)
+
+  # # Add variable to master dictionary
+  
+  # df =  fact_table[0]
+  # df.columns= ["attribute", "values"]
+  # html_table = df.to_html()
+  # html_table = html_table.replace('\n', " ")
+  # mars['facts']=html_table
+  # print(mars)
+
   # ***MARS HEMISPHERE IMAGES***
   # ============================
 
@@ -95,7 +120,8 @@ def scrape_info():
   hem2_url = 'https://astrogeology.usgs.gov/search/map/Mars/Viking/schiaparelli_enhanced'
   hem3_url = 'https://astrogeology.usgs.gov/search/map/Mars/Viking/syrtis_major_enhanced'
   hem4_url = 'https://astrogeology.usgs.gov/search/map/Mars/Viking/valles_marineris_enhanced'
-  # ***HEMISPHERE IMAGE 1***
+  
+# ***HEMISPHERE IMAGE 1***
   # Retrieve all elements that contain hemisphere image and title
   browser.visit(hem1_url)
 
