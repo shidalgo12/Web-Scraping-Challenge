@@ -1,20 +1,20 @@
-# Web-Scraping
+# Web Scraping
 
-A web application created scraping various websites for data related to the Mission to Mars and displays the information in a single HTML page.
+## Background
 
-Step 1 - Scraping
-Complete your initial scraping using Jupyter Notebook, BeautifulSoup, Pandas, and Requests/Splinter.
+A web application created scraping data from various websites related to the Mission to Mars.  All data later displayed in a single HTML page. Initial scraping completed in a Jupyter Notebook, using BeautifulSoup, Pandas, and Requests/Splinter coding.
 
-Create a Jupyter Notebook file called mission_to_mars.ipynb and use this to complete all of your scraping and analysis tasks. The following outlines what you need to scrape.
-
-
-NASA Mars News
-
-Scrape the NASA Mars News Site and collect the latest News Title and Paragraph Text. Assign the text to variables that you can reference later.
+## Scraping
 
 
+### NASA Mars News
+https://mars.nasa.gov/news/
 
-JPL Mars Space Images - Featured Image
+The latest News Title and Paragraph Text scraped and assigned to variables that were added into a master dictionary for future referene. the text to variables that you can reference later.
+
+
+### JPL Mars Space Images - Featured Image
+https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars
 
 
 Visit the url for JPL Featured Space Image here.
@@ -30,14 +30,13 @@ Make sure to save a complete url string for this image.
 
 
 
-Mars Weather
-
+### Mars Weather
+https://twitter.com/marswxreport?lang=en
 Visit the Mars Weather twitter account here and scrape the latest Mars weather tweet from the page. Save the tweet text for the weather report as a variable called mars_weather.
 
 
-Mars Facts
-
-
+### Mars Facts
+https://space-facts.com/mars/
 Visit the Mars Facts webpage here and use Pandas to scrape the table containing facts about the planet including Diameter, Mass, etc.
 
 
@@ -45,8 +44,8 @@ Use Pandas to convert the data to a HTML table string.
 
 
 
-Mars Hemispheres
-
+### Mars Hemispheres
+https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars
 
 Visit the USGS Astrogeology site here to obtain high resolution images for each of Mar's hemispheres.
 
@@ -61,7 +60,7 @@ Append the dictionary with the image url string and the hemisphere title to a li
 
 
 
-Step 2 - MongoDB and Flask Application
+#### MongoDB and Flask Application
 Use MongoDB with Flask templating to create a new HTML page that displays all of the information that was scraped from the URLs above.
 
 
