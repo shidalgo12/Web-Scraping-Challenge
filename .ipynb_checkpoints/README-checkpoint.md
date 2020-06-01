@@ -10,39 +10,29 @@ A web application created scraping data from various websites related to the Mis
 ### NASA Mars News
 https://mars.nasa.gov/news/
 
-The latest News Title and Paragraph Text scraped and assigned to variables that were added into a master dictionary for future referene. the text to variables that you can reference later.
+The latest News Title and Paragraph Text scraped and assigned to variables that were added into a master dictionary for future reference. 
 
 
-### JPL Mars Space Images - Featured Image
+### JPL Mars Space - Featured Image
 https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars
 
 
-Visit the url for JPL Featured Space Image here.
-
-
-Use splinter to navigate the site and find the image url for the current Featured Mars Image and assign the url string to a variable called featured_image_url.
-
-
-Make sure to find the image url to the full size .jpg image.
-
-
-Make sure to save a complete url string for this image.
-
+JPL website visited to scrape the data of the current feature image, which changes several times throughout the day.  Splinter coding was used to navigate the site and assign the url string to a variable added to the master dictionary.
 
 
 ### Mars Weather
 https://twitter.com/marswxreport?lang=en
+
 Visit the Mars Weather twitter account here and scrape the latest Mars weather tweet from the page. Save the tweet text for the weather report as a variable called mars_weather.
 
 
 ### Mars Facts
 https://space-facts.com/mars/
+
 Visit the Mars Facts webpage here and use Pandas to scrape the table containing facts about the planet including Diameter, Mass, etc.
 
 
 Use Pandas to convert the data to a HTML table string.
-
-
 
 ### Mars Hemispheres
 https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars
