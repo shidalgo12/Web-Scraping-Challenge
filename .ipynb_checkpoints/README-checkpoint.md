@@ -10,30 +10,25 @@ All data scraped and stored into a Python dictionary and sent to a MongoDB datab
 
 
 #### NASA Mars News
+Web elements observed to extract the latest News Title and Paragraph Text.
 https://mars.nasa.gov/news/
 
-Web elements observed to extract the latest News Title and Paragraph Text. 
-
 #### JPL Mars Space - Featured Image
-https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars
-
 JPL website visited to scrape the data of the current feature image, which changes several times throughout the day.  Splinter coding was used to navigate the site and assign the url string to a variable added to the dictionary.
+https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars
 
 
 #### Mars Weather
+Mars Weather twitter account visited to scrape the latest Mars weather tweet from the page. 
 https://twitter.com/marswxreport?lang=en
 
-Mars Weather twitter account visited to scrape the latest Mars weather tweet from the page. 
-
 #### Mars Facts
+Pandas library used to scrape the table containing facts about the planet including Diameter, Mass, etc.  Data was then converted to an HTML table string allowing for visualization on the HTML page.
 https://space-facts.com/mars/
 
-Pandas library used to scrape the table containing facts about the planet including Diameter, Mass, etc.  Data was then converted to an HTML table string allowing for visualization on the HTML page.
-
 #### Mars Hemispheres
-https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars
-
 High resolution images obtained for each of Mar's hemispheres.  The image url string for the full resolution hemisphere image, and the Hemisphere title containing the hemisphere name stored into the Python dictionary.
+https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars
 
 ## MongoDB and Flask Application
 MongoDB used with Flask templating to create a new HTML page that displays all of the information that was scraped from the URLs above.
